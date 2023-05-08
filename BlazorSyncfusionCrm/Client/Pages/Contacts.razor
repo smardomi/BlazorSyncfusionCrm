@@ -1,0 +1,48 @@
+﻿@page "/contacts"
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+
+
+<PageTitle>Contacts</PageTitle>
+
+<h3>Contacts</h3>
+
+<SfButton CssClass="e-success mb-2" IconCss="e-icons e-edit" Content="Create New Contact"
+          OnClick="@(() => NavigationManager.NavigateTo("contacts/new"))" />
+
+<SfGrid DataSource="gridData" AllowFiltering="true" Toolbar="@(new List<string>(){"Search"})">
+    <GridColumns>
+        <GridColumn Field="FirstName" HeaderText="First Name"></GridColumn>
+        <GridColumn Field="LastName" HeaderText="Last Name"></GridColumn>
+        <GridColumn Field="NickName" HeaderText="Nick Name"></GridColumn>
+        <GridColumn Field="Place" HeaderText="Place"></GridColumn>
+        <GridColumn Field="DateOfBirth" HeaderText="Date Of Birth" Format="yyyy-MM-dd"></GridColumn>
+        <GridColumn>
+            <Template>
+                @{
+                    var contact = context as Contact;
+
+                    <SfButton CssClass="e-inherit" IconCss="e-icons e-edit"
+                              OnClick="@(() => EditContact(contact.Id))" />
+
+                    <SfButton CssClass="e-inherit" IconCss="e-icons e-trash"
+                              OnClick="@(() => DeleteContact(contact!))" />
+                }
+            </Template>
+        </GridColumn>
+    </GridColumns>
+</SfGrid>
+
+<SfDialog Width="250px" ShowCloseIcon="true" IsModal="true" @bind-Visible="isVisible">
+    <DialogTemplates>
+        <Header> Warning </Header>
+        <Content> Are you sure to delete @contactToDelete!.NickName ? </Content>
+    </DialogTemplates>
+    <DialogAnimationSettings Effect="@animationEffect" Duration=400 />
+    <DialogButtons>
+        <DialogButton Content="OK" OnClick="@ConfirmDelete" />
+        <DialogButton Content="Cancel" IsPrimary="true" OnClick="@CancelDelete" />
+    </DialogButtons>
+    @*<span id="message">@ClickStatus</span>*@
+</SfDialog>
+

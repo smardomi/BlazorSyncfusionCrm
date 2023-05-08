@@ -1,0 +1,50 @@
+﻿@page "/contacts/edit/{id:int}"
+@page "/contacts/new"
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+@inject ToastService ToastService
+
+@if (Id is not null)
+{
+    <PageTitle>Edit Contact</PageTitle>
+    <h3>Edit @Contact.NickName</h3>
+}
+else
+{
+    <PageTitle>Create Contact</PageTitle>
+    <h3>Create a new Contact</h3>
+}
+
+<div>
+    <EditForm Model="Contact" OnValidSubmit="HandleSubmit">
+        <DataAnnotationsValidator />
+
+        <SfTextBox CssClass="e-outline" Placeholder="First Name"
+                   FloatLabelType="FloatLabelType.Auto" @bind-value="Contact.FirstName"/>
+                   
+        <ValidationMessage For="() => Contact.FirstName"/>
+
+        <SfTextBox CssClass="e-outline" Placeholder="Last Name"
+                   FloatLabelType="FloatLabelType.Auto" @bind-value="Contact.LastName"/>
+
+        <SfTextBox CssClass="e-outline" Placeholder="Nick Name"
+                   FloatLabelType="FloatLabelType.Auto" @bind-value="Contact.NickName"/>
+
+        <SfTextBox CssClass="e-outline" Placeholder="Place"
+                   FloatLabelType="FloatLabelType.Auto" @bind-value="Contact.Place"/>
+
+        <SfDatePicker TValue="DateTime?" Placeholder="Date Of Birth" Format="MM/dd/yyyy"
+                      FloatLabelType="FloatLabelType.Auto" @bind-value="Contact.DateOfBirth"/>
+        <hr/>
+        <SfButton CssClass="e-primary" IconCss="e-icons e-save" Content="Save" type="submit"/>
+        <SfButton CssClass="e-secoundary" IconCss="e-icons e-save" Content="Back" 
+                  OnClick="@(() => NavigationManager.NavigateTo("/contacts"))" />
+
+    </EditForm>
+</div>
+
+@code {
+
+    
+
+}
