@@ -1,5 +1,6 @@
 using BlazorSyncfusionCrm.Client;
 using BlazorSyncfusionCrm.Client.Components;
+using BlazorSyncfusionCrm.Client.Pages;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Syncfusion.Blazor;
@@ -21,6 +22,7 @@ builder.Services.AddScoped(sp => sp
                                     .CreateClient("BlazorSyncfusionCrm.ServerAPI"));
 
 builder.Services.AddSingleton<ToastService>();
+builder.Services.AddTransient<Notes>();
 
 builder.Services.AddSyncfusionBlazor();
 

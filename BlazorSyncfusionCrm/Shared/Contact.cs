@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace BlazorSyncfusionCrm.Shared
@@ -22,5 +23,9 @@ namespace BlazorSyncfusionCrm.Shared
 
         [JsonIgnore]
         public List<Note>? Notes { get; set; }
+
+        [NotMapped]
+        public string FullName => FirstName + " " + LastName;
+
     }
 }

@@ -11,5 +11,6 @@ namespace BlazorSyncfusionCrm.Shared
         public DateTime DateCreated { get; set; } = DateTime.Now;
 
         public Contact? Contact { get; set; }
+
     }
 }

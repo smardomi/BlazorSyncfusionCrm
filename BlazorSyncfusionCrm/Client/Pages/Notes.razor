@@ -1,0 +1,23 @@
+﻿@page "/notes"
+@inject HttpClient httpClient
+
+<h3>Notes</h3>
+
+
+@foreach (var note in NoteList)
+{
+    <SfCard>
+        <CardHeader Title="@note.DateCreated.ToString()"/>
+        <CardContent Content="@note.Text"/>
+        <CardFooter>
+            <CardFooterContent>
+                <SfButton Content="@($"Show {note.Contact.FullName}")"
+                          IsPrimary="true" OnClick ="() => NavigateToContact(note.ContactId.Value)"/>
+            </CardFooterContent>
+        </CardFooter>
+    </SfCard>
+}
+
+@code {
+
+}

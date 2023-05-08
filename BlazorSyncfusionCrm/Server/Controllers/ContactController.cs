@@ -55,7 +55,8 @@ namespace BlazorSyncfusionCrm.Server.Controllers
         public async Task Delete(int id, CancellationToken cancellationToken)
         {
             var contact = await context.Contacts.SingleAsync(a => a.Id == id, cancellationToken: cancellationToken);
-            context.Contacts.Remove(contact);
+            contact.IsDeleted = true;
+            contact.DateDeleted = DateTime.Now;
             await context.SaveChangesAsync(cancellationToken);
         }
     }

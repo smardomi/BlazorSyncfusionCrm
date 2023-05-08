@@ -5,10 +5,13 @@
 
 <PageTitle>Contacts</PageTitle>
 
-<h3>Contacts</h3>
+<SfButton CssClass="btn-info text-white mb-2" IconCss="e-icons e-refresh" Content="Reload Grid"
+          OnClick="@(GetGridData)" />
 
 <SfButton CssClass="e-success mb-2" IconCss="e-icons e-edit" Content="Create New Contact"
           OnClick="@(() => NavigationManager.NavigateTo("contacts/new"))" />
+
+
 
 <SfGrid DataSource="gridData" AllowFiltering="true" Toolbar="@(new List<string>(){"Search"})">
     <GridColumns>

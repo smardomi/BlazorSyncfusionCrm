@@ -12,7 +12,8 @@ namespace BlazorSyncfusionCrm.Client.Pages
         public int? Id { get; set; }
 
         public Contact Contact { get; set; } = new Contact();
-
+        public List<Note> notes { get; set; } = new List<Note>();
+        public Note newNote { get; set; } = new Note{Text = string.Empty};
 
         protected override async Task OnInitializedAsync()
         {
@@ -21,6 +22,8 @@ namespace BlazorSyncfusionCrm.Client.Pages
                 var result = await HttpClient.GetFromJsonAsync<Contact>($"api/Contact/{Id}");
                 if (result != null)
                     Contact = result;
+
+                await LoadNotes();
             }
 
         }
@@ -54,6 +57,35 @@ namespace BlazorSyncfusionCrm.Client.Pages
                 Title = "successful",
                 Content = "operation was successful"
             });
+        }
+
+        private async Task CreateNote()
+        {
+            if (Id is null)
+             return;
+
+            newNote.ContactId = Id;
+            var result = await HttpClient.PostAsJsonAsync("api/note",newNote);
+            if (result.IsSuccessStatusCode)
+            {
+                newNote = new Note{Text = string.Empty};
+                await LoadNotes();
+            }
+               
+        }
+
+        private async Task LoadNotes()
+        {
+            var result = await HttpClient.GetFromJsonAsync<List<Note>>("api/note");
+            if (result is not null)
+                notes = result;
+        }
+
+        private async Task DeleteNote(int id)
+        {
+            var result = await HttpClient.DeleteAsync("api/note/" + id);
+            if (result.IsSuccessStatusCode)
+                await LoadNotes();
         }
     }
 }

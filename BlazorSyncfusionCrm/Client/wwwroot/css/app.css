@@ -30,3 +30,25 @@ h1:focus {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+
+.mt-2 {
+    margin-top: 20px
+}
+
+.mt-1 {
+    margin-top: 10px
+}
+
+.mb-1 {
+    margin-bottom: 10px
+}
+
+.mb-2 {
+    margin-bottom: 20px
+}
+
+.validation-message {
+    color: red;
+    font-size: 13px;
+}

@@ -17,14 +17,14 @@ namespace BlazorSyncfusionCrm.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAllNotes()
+        public async Task<List<Note>> GetAllNotes()
         {
             var notes = await context.Notes
                                               .Include(a => a.Contact)
                                               .OrderByDescending(a => a.DateCreated)
                                               .ToListAsync();
 
-            return Ok(notes);
+            return notes;
         }
 
         [HttpGet("{contactId}")]
@@ -44,7 +44,7 @@ namespace BlazorSyncfusionCrm.Server.Controllers
         {
             await context.Notes.AddAsync(note);
             await context.SaveChangesAsync();
-            return await GetNoteByContactId(note.ContactId.Value);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
@@ -53,7 +53,7 @@ namespace BlazorSyncfusionCrm.Server.Controllers
             var note = await context.Notes.SingleAsync(a => a.Id == id);
             context.Notes.Remove(note);
             await context.SaveChangesAsync();
-            return await GetNoteByContactId(note.ContactId.Value);
+            return Ok();
         }
     }
 }
