@@ -6,7 +6,7 @@
 
 @foreach (var note in NoteList)
 {
-    <SfCard>
+    <SfCard CssClass="mb-2">
         <CardHeader Title="@note.DateCreated.ToString()"/>
         <CardContent Content="@note.Text"/>
         <CardFooter>

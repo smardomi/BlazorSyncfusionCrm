@@ -57,19 +57,26 @@ else
                 <hr/>
 
 
-
-                @foreach (var note in notes)
+                if (notes.Any())
                 {
-                    <SfCard CssClass="mb-1">
-                        <CardHeader Title="@note.DateCreated.ToString()"/>
-                        <CardContent Content="@note.Text"/>
-                        <CardFooter>
-                            <CardFooterContent>
-                                <SfButton IconCss="e-icons e-trash" CssClass="btn-danger" OnClick="() => DeleteNote(note.Id)" />
-                            </CardFooterContent>
-                        </CardFooter>
-                    </SfCard>
+                    @foreach (var note in notes)
+                    {
+                        <SfCard CssClass="mb-1">
+                            <CardHeader Title="@note.DateCreated.ToString()"/>
+                            <CardContent Content="@note.Text"/>
+                            <CardFooter>
+                                <CardFooterContent>
+                                    <SfButton IconCss="e-icons e-trash" CssClass="btn-danger" OnClick="() => DeleteNote(note.Id)" />
+                                </CardFooterContent>
+                            </CardFooter>
+                        </SfCard>
+                    }
                 }
+                else
+                {
+                    <p>not any note yet.</p>
+                }
+                
             }
         </div>
     </div>

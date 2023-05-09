@@ -25,10 +25,10 @@
                 @{
                     var contact = context as Contact;
 
-                    <SfButton CssClass="e-inherit" IconCss="e-icons e-edit"
+                    <SfButton CssClass="e-inherit btn-pink" IconCss="e-icons e-edit" 
                               OnClick="@(() => EditContact(contact.Id))" />
 
-                    <SfButton CssClass="e-inherit" IconCss="e-icons e-trash"
+                    <SfButton CssClass="e-inherit btn-red" IconCss="e-icons e-trash"
                               OnClick="@(() => DeleteContact(contact!))" />
                 }
             </Template>

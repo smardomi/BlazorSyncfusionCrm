@@ -76,7 +76,7 @@ namespace BlazorSyncfusionCrm.Client.Pages
 
         private async Task LoadNotes()
         {
-            var result = await HttpClient.GetFromJsonAsync<List<Note>>("api/note");
+            var result = await HttpClient.GetFromJsonAsync<List<Note>>("api/note/" + Id);
             if (result is not null)
                 notes = result;
         }

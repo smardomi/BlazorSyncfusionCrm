@@ -16,6 +16,8 @@ namespace BlazorSyncfusionCrm.Shared
         public string Place { get; set; } = string.Empty;
         public bool IsDeleted { get; set; } = false;
         public DateTime? DateOfBirth { get; set; }
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime? DateUpdated { get; set; }
         public DateTime? DateDeleted { get; set; }
